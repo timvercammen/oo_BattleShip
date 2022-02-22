@@ -1,8 +1,9 @@
 <?php
 require __DIR__ . '/bootstrap.php';
 
-$shipLoader = new ShipLoader();
-$ships = $shipLoader->getShips();
+$container = new Container($configuration);
+$shipLoader = $container->getShipLoader();
+    $ships = $shipLoader->getShips();
 
 $ship1Id = isset($_POST['ship1_id']) ? $_POST['ship1_id'] : null;
 $ship1Quantity = isset($_POST['ship1_quantity']) ? $_POST['ship1_quantity'] : 1;
@@ -29,7 +30,7 @@ if ($ship1Quantity <= 0 || $ship2Quantity <= 0) {
 }
 
 
-$battleManager = new BattleManager();
+$battleManager = $container->getBattleManager();
 $battleResult = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity);
 ?>
 

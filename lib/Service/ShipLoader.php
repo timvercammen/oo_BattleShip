@@ -4,6 +4,10 @@ class ShipLoader
 {
     private $pdo;
 
+    public function __construct(PDO $pdo)
+    {
+        $this->pdo = $pdo;
+    }
     /**
      * @return Ship[]
      */
@@ -63,14 +67,6 @@ class ShipLoader
      */
     private function getPDO()
     {
-        if ($this->pdo === null) {
-
-            $pdo = new PDO('mysql:host=127.0.0.1;dbname=oo_battle', 'root');
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            $this->pdo = $pdo;
-        }
-
         return $this->pdo;
     }
 }
